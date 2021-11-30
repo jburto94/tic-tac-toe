@@ -35,4 +35,11 @@ class Board < Piece
       puts "-------------"
     end
   end
+
+  def full?
+    grid.each do |row|
+      row.each { |square| return false if square.empty? }
+    end
+    true
+  end
 end
