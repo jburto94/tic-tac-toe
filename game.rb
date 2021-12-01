@@ -6,7 +6,11 @@ class Game
   attr_reader :board, :players
 
   def self.create_players
-    [Player.new("Player 1", "X"), Player.new("Player 2", "O")]
+    puts "Player 1, enter your name:"
+    player1_name = gets.chomp
+    puts "Player 2, enter your name:"
+    player2_name = gets.chomp
+    [Player.new(player1_name, "X"), Player.new(player2_name, "O")]
   end
 
   def initialize
@@ -32,7 +36,7 @@ class Game
   def get_move
     move = []
     until valid_move?(move)
-      puts "It is your turn #{current_player.name}, which open square would you like to mark? ex. '0,1' '2,2'. Anything not a number is converted to 0."
+      puts "#{current_player.name}, make your move."
       move = gets.chomp.split(",")
       move.map!(&:to_i)
     end
@@ -100,3 +104,6 @@ class Game
     values.uniq.size <= 1
   end
 end
+
+new_game = Game.new
+new_game.play
